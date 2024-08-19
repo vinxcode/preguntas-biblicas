@@ -9,9 +9,11 @@ export default function Pregunta(props: PreguntaProps) {
 
     const isPreguntaModalOpen = useStore((state) => state.isPreguntaModalOpen)
     const updateIsPreguntaModalOpen = useStore((state) => state.updateIsPreguntaModalOpen)
+    const updatePreguntaModal = useStore((state) => state.updatePreguntaModal)
 
     const handleSelect = (idPregunta: number) => {
         updateIsPreguntaModalOpen(true)
+        updatePreguntaModal(props.id_pregunta)
     }
 
     return (

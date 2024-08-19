@@ -28,7 +28,9 @@ export default function Juego() {
     const supabase = createClient()
     const { juego } = useParams()
     const [preguntas, setPreguntas] = useState<Pregunta[]>([])
+    const [isRespuesta, setIsRespuesta] = useState(false)
     const isPreguntaModalOpen = useStore((state) => state.isPreguntaModalOpen)
+    const preguntaModal = useStore((state) => state.preguntaModal)
     const updateIsPreguntaModalOpen = useStore((state) => state.updateIsPreguntaModalOpen)
 
     useEffect(() => {
@@ -62,9 +64,14 @@ export default function Juego() {
         getPreguntas()
     }, [supabase])
 
+    const handleCloseModal = () => {
+        updateIsPreguntaModalOpen(false)
+        setIsRespuesta(false)
+    }
+
     return (
-        <div className="w-full h-screen border-2  flex flex-col items-center">
-            
+        <div className="w-full h-screen flex flex-col items-center">
+
             <div className="grid grid-cols-8 w-full gap-2 mt-10">
                 {
                     preguntas.map(pregunta => (
@@ -75,15 +82,24 @@ export default function Juego() {
                 }
             </div>
 
-        {
-            isPreguntaModalOpen && (
-                <div className="absolute bg-white-bg shadow-lg p-4  flex flex-col z-10 rounded-lg w-96 mx-auto">
-                    <p className="text-black">MODAL</p>
-                    <button onClick={() => updateIsPreguntaModalOpen(false)}
-                    className="bg-red-1 py-3 rounded-lg w-full text-white">Close modal</button>
-                </div>
-            )
-        }
+            {
+                isPreguntaModalOpen && (
+                    <div className="absolute bg-white-bg shadow-lg p-4 w-full flex flex-col gap-2 z-10 rounded-lg  md:w-[766px] mt-[300px] font-tilt">
+                        <p className="text-black">Pregunta numero {preguntaModal}</p>
+                        <p className="text-black">{preguntas[preguntaModal - 1].pregunta}</p>
+                        {
+                            isRespuesta ? (
+                                <p className="text-black">{preguntas[preguntaModal - 1].respuesta}</p>
+                            ) : (
+                                <button className="bg-blue py-3 rounded-lg w-full text-white"
+                                    onClick={() => setIsRespuesta(true)}>Mostrar respuesta</button>
+                            )
+                        }
+                        <button onClick={handleCloseModal}
+                            className="bg-red-1 py-3 rounded-lg w-full text-white">CERRAR</button>
+                    </div>
+                )
+            }
         </div>
 
     )
