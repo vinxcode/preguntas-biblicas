@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation"
 import { createClient } from "@/utils/supabase/client"
 import { useState, useEffect } from "react"
+import Pregunta from "./Pregunta"
 
 type Deck = {
     id_deck: number,
@@ -58,12 +59,19 @@ export default function Juego() {
         getPreguntas()
     }, [supabase])
 
+    const handleSelect = (idPregunta: number) => {
 
+    }
 
     return (
-        <div>
-            <p>{juego}</p>
-            <p>{JSON.stringify(preguntas)}</p>
+        <div className="grid grid-cols-8 w-full gap-2 mt-10">
+            {
+                preguntas.map(pregunta => (
+                        <Pregunta key={pregunta.id_pregunta} 
+                        id_pregunta={pregunta.id_pregunta}
+                        />
+                ))
+            }
         </div>
 
     )

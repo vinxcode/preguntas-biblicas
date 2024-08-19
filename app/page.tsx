@@ -27,7 +27,7 @@ export default function Index() {
   }, [supabase])
 
   return (
-    <div className="flex-1 w-full flex flex-col gap-2 items-center font-tilt">
+    <div className="flex-1 w-full flex flex-col gap-2 items-center font-tilt md:w-[766px]">
       <nav className="w-full flex justify-center h-16">
         <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
         </div>
