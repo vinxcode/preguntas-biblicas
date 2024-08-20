@@ -32,25 +32,26 @@ export default function Index() {
 
   return (
     <div className="flex-1 w-full flex flex-col gap-2 items-center font-tilt h-screen">
-      <Header/>
-      <Hero/>
+      <Header />
+      <Hero />
 
       <h3 className="text-white text-center mt-5 text-2xl">Escoge un mazo para jugar</h3>
-      <div className='bg-red-1 rounded-full w-3/5 h-5 mb-5'></div>
+      <div className='bg-white-bg rounded-full w-3/5 h-5 mb-5'></div>
 
-      <section className="flex flex-col gap-3 w-full items-center">
-        <button className="p-5 bg-blue rounded-lg w-11/12 shadow-xl text-white hover:bg-red-3">
-          Crear nuevo Deck
+      <section className="grid grid-cols-3 gap-3 w-full items-center">
+        <button className="p-5 bg-red-1 rounded-lg w-full h-40  shadow-xl text-white hover:bg-red-3 flex items-center gap-1 justify-center">
+          <span className="icon-[lets-icons--add] text-3xl"></span>Crear nuevo Deck
         </button>
         {
           decks.map(deck => (
-            <Link href={`./${deck.id_deck}`} key={deck.id_deck} className="p-5 bg-red-mixed rounded-lg w-11/12 flex flex-col justify-between shadow-xl hover:bg-red-3"
-            onClick={() => updateCurrentDeck(deck.nombre_deck)}>
+            <Link href={`./${deck.id_deck}`} key={deck.id_deck} className="p-5 bg-white-bg rounded-lg w-full h-40 flex flex-col justify-between shadow-xl 
+            text-blue hover:bg-white hover:text-red-1"
+              onClick={() => updateCurrentDeck(deck.nombre_deck)}>
               <div>
-                <h3 className="text-white font-bold text-2xl">{deck.nombre_deck}</h3>
-                <p className="text-white font-light text-sm">{deck.descripcion_deck}</p>
+                <h3 className="font-bold text-2xl">{deck.nombre_deck}</h3>
+                <p className="font-light text-sm">{deck.descripcion_deck}</p>
               </div>
-              <p className="text-white text-xs self-end">{deck.numero_preguntas} preguntas</p>
+              <p className=" text-xs self-end">{deck.numero_preguntas} preguntas</p>
             </Link>
           ))
         }
