@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useStore } from "@/app/store/useStore";
 import Header from "./Header";
 import Hero from "./Hero";
+import Footer from "./Footer";
 
 type Deck = {
   id_deck: number,
@@ -31,12 +32,13 @@ export default function Index() {
   }, [supabase])
 
   return (
-    <div className="flex-1 w-full flex flex-col gap-2 items-center font-tilt md:w-[1200px]">
+    <div className="flex-1 w-full flex flex-col gap-2 items-center font-tilt md:w-[1200px] h-screen">
       <Header/>
       <Hero/>
 
-      <h1 className="text-5xl text-center font-league font-black px-5">Bienvenido a Juego Biblico</h1>
-      <p className="text-center">Escoja un mazo para poder jugar</p>
+      <h3 className="text-white text-center mt-5 text-2xl">Escoge un mazo para jugar</h3>
+      <div className='bg-red-1 rounded-full w-3/5 h-5 mb-5'></div>
+
       <section className="flex flex-col gap-3 w-full items-center">
         <button className="p-5 bg-blue rounded-lg w-11/12 shadow-xl text-white hover:bg-red-3">
           Crear nuevo Deck
@@ -54,6 +56,7 @@ export default function Index() {
           ))
         }
       </section>
+      <Footer/>
     </div>
   );
 }
