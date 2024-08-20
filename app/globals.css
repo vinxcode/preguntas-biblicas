@@ -28,3 +28,8 @@
     @apply border-foreground/20;
   }
 }
+
+body {
+  background: rgb(74, 62, 101);
+  background: linear-gradient(180deg, rgba(74, 62, 101, 1) 0%, rgba(162, 46, 90, 1) 100%);
+}

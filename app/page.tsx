@@ -4,6 +4,8 @@ import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useStore } from "@/app/store/useStore";
+import Header from "./Header";
+import Hero from "./Hero";
 
 type Deck = {
   id_deck: number,
@@ -29,11 +31,9 @@ export default function Index() {
   }, [supabase])
 
   return (
-    <div className="flex-1 w-full flex flex-col gap-2 items-center font-tilt md:w-[766px]">
-      <nav className="w-full flex justify-center h-16">
-        <div className="w-full max-w-4xl flex justify-between items-center p-3 text-sm">
-        </div>
-      </nav>
+    <div className="flex-1 w-full flex flex-col gap-2 items-center font-tilt md:w-[1200px]">
+      <Header/>
+      <Hero/>
 
       <h1 className="text-5xl text-center font-league font-black px-5">Bienvenido a Juego Biblico</h1>
       <p className="text-center">Escoja un mazo para poder jugar</p>
