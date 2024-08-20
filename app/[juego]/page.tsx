@@ -72,9 +72,11 @@ export default function Juego() {
     }
 
     return (
-        <div className="w-full h-screen flex flex-col items-center">
-            <h1 className="text-5xl mt-5 font-tilt font-bold ">{currentDeck}</h1>
-            <div className="grid grid-cols-4 md:grid-cols-8 w-full gap-2 mt-10 p-4">
+        <div className="w-full flex flex-col items-center bg-white-bg rounded-xl shadow-xl p-5 mt-10">
+            <h1 className="text-5xl mt-5 font-tilt font-bold text-blue">{currentDeck}</h1>
+            <div className='bg-red-3 rounded-full w-3/5 h-5 my-2'></div>
+
+            <div className="grid grid-cols-3 md:grid-cols-8 w-full gap-2 mt-10 p-4">
                 {
                     preguntas.map((pregunta, index) => (
                         <Pregunta key={pregunta.id_pregunta}
@@ -86,7 +88,7 @@ export default function Juego() {
 
             {
                 isPreguntaModalOpen && (
-                    <div className="w-full h-screen flex justify-center items-center bg-red-mixed absolute z-9">
+                    <div className="w-full h-screen flex justify-center items-center bg-red-mixed absolute top-0 z-9">
                         <div className="absolute bg-white-bg shadow-lg p-7 w-full flex flex-col gap-2 z-10 rounded-lg  md:w-[766px]  font-tilt items-center">
                         <p className="text-black underline underline-offset-4">Pregunta numero {preguntaModal}</p>
                         <p className="text-black text-3xl">{preguntas[preguntaModal - 1].pregunta}</p>
