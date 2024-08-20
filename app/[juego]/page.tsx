@@ -29,6 +29,7 @@ export default function Juego() {
     const { juego } = useParams()
     const [preguntas, setPreguntas] = useState<Pregunta[]>([])
     const [isRespuesta, setIsRespuesta] = useState(false)
+
     const isPreguntaModalOpen = useStore((state) => state.isPreguntaModalOpen)
     const preguntaModal = useStore((state) => state.preguntaModal)
     const updateIsPreguntaModalOpen = useStore((state) => state.updateIsPreguntaModalOpen)
@@ -72,8 +73,8 @@ export default function Juego() {
 
     return (
         <div className="w-full h-screen flex flex-col items-center">
-            <h1>{currentDeck}</h1>
-            <div className="grid grid-cols-8 w-full gap-2 mt-10">
+            <h1 className="text-5xl mt-5 font-tilt font-bold ">{currentDeck}</h1>
+            <div className="grid grid-cols-4 md:grid-cols-8 w-full gap-2 mt-10 p-4">
                 {
                     preguntas.map((pregunta, index) => (
                         <Pregunta key={pregunta.id_pregunta}
@@ -85,12 +86,13 @@ export default function Juego() {
 
             {
                 isPreguntaModalOpen && (
-                    <div className="absolute bg-white-bg shadow-lg p-7 w-full flex flex-col gap-2 z-10 rounded-lg  md:w-[766px] mt-[300px] font-tilt">
-                        <p className="text-black">Pregunta numero {preguntaModal}</p>
-                        <p className="text-black">{preguntas[preguntaModal - 1].pregunta}</p>
+                    <div className="w-full h-screen flex justify-center items-center bg-red-mixed absolute z-9">
+                        <div className="absolute bg-white-bg shadow-lg p-7 w-full flex flex-col gap-2 z-10 rounded-lg  md:w-[766px]  font-tilt items-center">
+                        <p className="text-black underline underline-offset-4">Pregunta numero {preguntaModal}</p>
+                        <p className="text-black text-3xl">{preguntas[preguntaModal - 1].pregunta}</p>
                         {
                             isRespuesta ? (
-                                <p className="text-black">{preguntas[preguntaModal - 1].respuesta}</p>
+                                <p className="text-red-1 text-3xl">{preguntas[preguntaModal - 1].respuesta}</p>
                             ) : (
                                 <button className="bg-blue py-3 rounded-lg w-full text-white"
                                     onClick={() => setIsRespuesta(true)}>Mostrar respuesta</button>
@@ -99,9 +101,9 @@ export default function Juego() {
                         <button onClick={handleCloseModal}
                             className="bg-red-1 py-3 rounded-lg w-full text-white">CERRAR</button>
                     </div>
+                    </div>
                 )
             }
         </div>
-
     )
 }
