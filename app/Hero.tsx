@@ -4,8 +4,8 @@ import gif from './screen.gif'
 
 export default function Hero() {
     return (
-        <div className='flex justify-between w-full my-10 flex-col md:flex-row md:items-center'>
-            <div className='flex flex-col w-full p-5 md:w-2/5 gap-4'>
+        <div className='flex justify-between w-full my-10 flex-col lg:flex-row md:items-center'>
+            <div className='flex flex-col w-full p-5 md:w-3/4 lg:pr-40 gap-4'>
                 <div className='flex flex-col'>
                     <h1 className='text-white text-7xl font-league font-black'>Juego Bíblico</h1>
                     <div className='bg-red-1 rounded-full w-full h-5'></div>

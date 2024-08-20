@@ -31,7 +31,7 @@ export default function Index() {
   }, [supabase])
 
   return (
-    <div className="flex-1 w-full flex flex-col gap-2 items-center font-tilt md:w-[1200px] h-screen">
+    <div className="flex-1 w-full flex flex-col gap-2 items-center font-tilt h-screen">
       <Header/>
       <Hero/>
 
