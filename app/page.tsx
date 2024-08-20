@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { useStore } from "@/app/store/useStore";
 import Header from "./Header";
 import Hero from "./Hero";
-import Footer from "./Footer";
 
 type Deck = {
   id_deck: number,
@@ -56,7 +55,6 @@ export default function Index() {
           ))
         }
       </section>
-      <Footer/>
     </div>
   );
 }
