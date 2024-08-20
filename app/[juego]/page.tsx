@@ -74,9 +74,9 @@ export default function Juego() {
 
             <div className="grid grid-cols-8 w-full gap-2 mt-10">
                 {
-                    preguntas.map(pregunta => (
+                    preguntas.map((pregunta, index) => (
                         <Pregunta key={pregunta.id_pregunta}
-                            id_pregunta={pregunta.id_pregunta}
+                            id_pregunta={index+1}
                         />
                     ))
                 }
