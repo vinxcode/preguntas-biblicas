@@ -3,6 +3,7 @@
 import { createClient } from "@/utils/supabase/client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useStore } from "@/app/store/useStore";
 
 type Deck = {
   id_deck: number,
@@ -16,6 +17,7 @@ export default function Index() {
   const supabase = createClient()
 
   const [decks, setDecks] = useState<Deck[]>([])
+  const updateCurrentDeck = useStore((state) => state.updateCurrentDeck)
 
   useEffect(() => {
     const getDecks = async () => {
@@ -41,7 +43,8 @@ export default function Index() {
         </button>
         {
           decks.map(deck => (
-            <Link href={`./${deck.id_deck}`} key={deck.id_deck} className="p-5 bg-red-mixed rounded-lg w-11/12 flex flex-col justify-between shadow-xl hover:bg-red-3">
+            <Link href={`./${deck.id_deck}`} key={deck.id_deck} className="p-5 bg-red-mixed rounded-lg w-11/12 flex flex-col justify-between shadow-xl hover:bg-red-3"
+            onClick={() => updateCurrentDeck(deck.nombre_deck)}>
               <div>
                 <h3 className="text-white font-bold text-2xl">{deck.nombre_deck}</h3>
                 <p className="text-white font-light text-sm">{deck.descripcion_deck}</p>

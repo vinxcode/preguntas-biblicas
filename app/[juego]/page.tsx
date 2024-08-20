@@ -32,6 +32,7 @@ export default function Juego() {
     const isPreguntaModalOpen = useStore((state) => state.isPreguntaModalOpen)
     const preguntaModal = useStore((state) => state.preguntaModal)
     const updateIsPreguntaModalOpen = useStore((state) => state.updateIsPreguntaModalOpen)
+    const currentDeck = useStore((state) => state.currentDeck)
 
     useEffect(() => {
         const getPreguntas = async () => {
@@ -71,7 +72,7 @@ export default function Juego() {
 
     return (
         <div className="w-full h-screen flex flex-col items-center">
-
+            <h1>{currentDeck}</h1>
             <div className="grid grid-cols-8 w-full gap-2 mt-10">
                 {
                     preguntas.map((pregunta, index) => (
@@ -84,7 +85,7 @@ export default function Juego() {
 
             {
                 isPreguntaModalOpen && (
-                    <div className="absolute bg-white-bg shadow-lg p-4 w-full flex flex-col gap-2 z-10 rounded-lg  md:w-[766px] mt-[300px] font-tilt">
+                    <div className="absolute bg-white-bg shadow-lg p-7 w-full flex flex-col gap-2 z-10 rounded-lg  md:w-[766px] mt-[300px] font-tilt">
                         <p className="text-black">Pregunta numero {preguntaModal}</p>
                         <p className="text-black">{preguntas[preguntaModal - 1].pregunta}</p>
                         {
