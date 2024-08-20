@@ -18,7 +18,7 @@ export default function Hero() {
             <div className='flex justify-center'>
                 <Image
                 src={gif}
-                width={500}
+                width={450}
                 alt='GIF'
                 />
             </div>
