@@ -3,6 +3,11 @@ import Image from 'next/image'
 import gif from './screen.gif'
 
 export default function Hero() {
+
+    const handleClick = () => {
+        
+    }
+
     return (
         <div className='flex justify-between w-full my-10 flex-col lg:flex-row md:items-center'>
             <div className='flex flex-col w-full p-5 md:w-3/4 lg:pr-40 gap-4'>
@@ -13,7 +18,8 @@ export default function Hero() {
                 <p className='text-white font-league text-2xl '>
                     Aprende de la biblia mientras te diviertes. Hazlo con tus amigos, tu familia o en la iglesia.
                 </p>
-                <button className='border-2 border-white w-3/5 py-3 rounded-lg text-white hover:bg-red-1 hover:border-red-1'>¿Cómo funciona?</button>
+                <button onClick={handleClick}
+                className='border-2 border-white w-3/5 py-3 rounded-lg text-white hover:bg-red-1 hover:border-red-1'>¿Cómo funciona?</button>
             </div>
             <div className='flex justify-center'>
                 <Image
