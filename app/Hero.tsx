@@ -1,15 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import gif from './screen.gif'
 
 export default function Hero() {
 
+    const [isModalOpen, setIsModalOpen] = useState(false)
+
     const handleClick = () => {
-        
+        setIsModalOpen(true)
     }
 
     return (
-        <div className='flex justify-between w-full my-10 flex-col lg:flex-row md:items-center'>
+        <section className='flex justify-between w-full my-10 flex-col lg:flex-row md:items-center'>
             <div className='flex flex-col w-full p-5 md:w-3/4 lg:pr-40 gap-4'>
                 <div className='flex flex-col'>
                     <h1 className='text-white text-7xl font-league font-black'>Juego Bíblico</h1>
@@ -19,15 +21,26 @@ export default function Hero() {
                     Aprende de la biblia mientras te diviertes. Hazlo con tus amigos, tu familia o en la iglesia.
                 </p>
                 <button onClick={handleClick}
-                className='border-2 border-white w-3/5 py-3 rounded-lg text-white hover:bg-red-1 hover:border-red-1'>¿Cómo funciona?</button>
+                    className='border-2 border-white w-3/5 py-3 rounded-lg text-white hover:bg-red-1 hover:border-red-1'>¿Cómo funciona?</button>
             </div>
             <div className='flex justify-center'>
                 <Image
-                src={gif}
-                width={450}
-                alt='GIF'
+                    src={gif}
+                    width={450}
+                    alt='GIF'
                 />
             </div>
-        </div>
+            {
+                isModalOpen && (
+                    <div className='bg-blue absolute bottom-0 top-0 right-0 left-0 m-auto shadow-xl flex justify-center items-center z-10 modal'>
+                        <div className='p-10 bg-white-bg rounded-lg'>
+                            <p>MODAL</p>
+                            <button onClick={() => setIsModalOpen(false)}
+                            >Close modal</button>
+                        </div>
+                    </div>
+                )
+            }
+        </section>
     )
 }
