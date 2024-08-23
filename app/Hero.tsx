@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
 import gif from './screen.gif'
+import ModalContent from './ModalContent'
 
 export default function Hero() {
 
@@ -33,10 +34,10 @@ export default function Hero() {
             {
                 isModalOpen && (
                     <div className='bg-blue absolute bottom-0 top-0 right-0 left-0 m-auto shadow-xl flex justify-center items-center z-10 modal'>
-                        <div className='p-10 bg-white-bg rounded-lg'>
-                            <p>MODAL</p>
+                        <div className='p-10 bg-white-bg rounded-lg w-1/3'>
+                            <ModalContent />
                             <button onClick={() => setIsModalOpen(false)}
-                            >Close modal</button>
+                                className='w-full bg-red-2 py-3 text-white rounded-lg mt-3 hover:bg-red-3'>Close modal</button>
                         </div>
                     </div>
                 )
