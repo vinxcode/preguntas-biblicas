@@ -38,9 +38,10 @@ export default function Index() {
       <h3 className="text-white text-center my-5 text-2xl">Escoge un mazo para jugar</h3>
 
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 w-full items-center">
-        <button className="p-5 bg-red-1 rounded-lg w-full h-40  shadow-xl text-white hover:bg-red-3 flex items-center gap-1 justify-center">
+        <Link href={'./create-deck'}
+          className="p-5 bg-red-1 rounded-lg w-full h-40  shadow-xl text-white hover:bg-red-3 flex items-center gap-1 justify-center">
           <span className="icon-[lets-icons--add] text-3xl"></span>Crear nuevo Deck
-        </button>
+        </Link>
         {
           decks.map(deck => (
             <Link href={`./${deck.id_deck}`} key={deck.id_deck} className="p-5 bg-white-bg rounded-lg w-full h-40 flex flex-col justify-between shadow-xl 
