@@ -2,10 +2,17 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import gif from './screen.gif'
 import ModalContent from './ModalContent'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function Hero() {
 
     const [isModalOpen, setIsModalOpen] = useState(false)
+
+    const variants = {
+        hidden: { opacity: 0, scale: 0.9 },
+        visible: { opacity: 1, scale: 1 },
+        exit: { opacity: 0, scale: 0.9 }
+    }
 
     const handleClick = () => {
         setIsModalOpen(true)
@@ -31,17 +38,27 @@ export default function Hero() {
                     alt='GIF'
                 />
             </div>
-            {
-                isModalOpen && (
-                    <div className='bg-blue absolute bottom-0 top-0 right-0 left-0 m-auto shadow-xl flex justify-center items-center z-10 modal'>
-                        <div className='p-10 bg-white-bg rounded-lg w-1/3'>
-                            <ModalContent />
-                            <button onClick={() => setIsModalOpen(false)}
-                                className='w-full bg-red-2 py-3 text-white rounded-lg mt-3 hover:bg-red-3'>Close modal</button>
-                        </div>
-                    </div>
-                )
-            }
+            <AnimatePresence>
+                {
+                    isModalOpen && (
+
+                        <motion.div className='bg-blue absolute bottom-0 top-0 right-0 left-0 m-auto shadow-xl flex justify-center items-center z-10 modal'
+                            variants={variants}
+                            transition={{ duration: 0.1 }}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                        >
+                            <div className='p-10 bg-white-bg rounded-lg w-1/3'>
+                                <ModalContent />
+                                <button onClick={() => setIsModalOpen(false)}
+                                    className='w-full bg-red-2 py-3 text-white rounded-lg mt-3 hover:bg-red-3'>Close modal</button>
+                            </div>
+                        </motion.div>
+
+                    )
+                }
+            </AnimatePresence>
         </section>
     )
 }
