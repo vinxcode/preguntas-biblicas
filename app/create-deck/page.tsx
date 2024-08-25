@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { Toaster, toast } from 'sonner'
 
 export default function CreateDeck() {
 
@@ -44,12 +45,13 @@ export default function CreateDeck() {
                 console.error('Error al insertar los datos:', error);
             }
         } else {
-            alert('onde vaaaas prrro')
+            toast.error('Debe ingresar un nombre y una descripcion para el mazo')
         }
 
     };
     return (
         <section className='bg-white-bg w-full my-auto rounded-xl p-20 font-league text-blue'>
+            <Toaster position='top-center' richColors/>
             <h1 className='text-center text-3xl font-bold'>Crear un nuevo mazo</h1>
 
             <div className='flex flex-col items-center gap-3 p-5 w-3/4 mx-auto rounded-lg border-4 border-blue mt-5'>
