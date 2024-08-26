@@ -1,6 +1,7 @@
 'use client'
 
-import Form from "./Form"
+import FormDeck from "./FormDeck"
+import FormQuestions from "./FormQuestions"
 import { motion } from "framer-motion"
 
 export default function CreateDeck() {
@@ -11,7 +12,8 @@ export default function CreateDeck() {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.2 }}>
-            <Form />
+            <FormDeck />
+            <FormQuestions/>
 
         </motion.section>
     )
