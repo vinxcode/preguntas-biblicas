@@ -4,7 +4,6 @@ const supabaseUrl: any = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseKey: any = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-
 export async function POST(request: any) {
     const { nombre_deck, descripcion_deck, numero_preguntas } = await request.json();
 
