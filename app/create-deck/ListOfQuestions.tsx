@@ -33,22 +33,23 @@ export default function ListOfQuestions({ idDeck }: ListOfQuestionProps) {
     }, [supabase, questions, setQuestions])
 
     return (
-        <div className='py-10'>
-            <table>
+        <div className='p-7 mt-10 bg-white flex justify-center rounded-xl shadow-lg'>
+            <table className='w-full'>
                 <thead className='text-start'>
-                    <tr >
+                    <tr className='text-start'>
                         <th>ID</th>
-                        <th>Pregunta</th>
-                        <th>Respuesta</th>
+                        <th className='text-start'>Pregunta</th>
+                        <th className='text-start'>Respuesta</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         questions?.map((question, index) => (
                             <tr key={index} className='text-start'>
-                                <td>{index + 1}</td>
+                                <td className='text-center'>{index + 1}</td>
                                 <td>{question.pregunta}</td>
                                 <td>{question.respuesta}</td>
+                                <td><button className='bg-red-1 rounded-lg text-white py-1 px-5 icon-[material-symbols--delete]'></button></td>
                             </tr>
                         ))
                     }
