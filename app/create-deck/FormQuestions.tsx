@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import ListOfQuestions from './ListOfQuestions'
 import { Toaster, toast } from 'sonner'
+import Link from 'next/link'
 
 type FormQuestionsProps = {
     idDeck: number
@@ -67,8 +68,8 @@ export default function FormQuestions({ idDeck }: FormQuestionsProps) {
 
             <ListOfQuestions idDeck={idDeck} />
             <div className='w-full pt-10 flex justify-end gap-3 font-semibold'>
-                <button className='bg-blue py-3 px-10 text-white rounded-lg hover:bg-red-mixed'>Jugar con este mazo</button>
-                <button className='bg-red-3 py-3 px-10 text-white rounded-lg hover:bg-red-mixed'>Finalizar mazo</button>
+                <Link href={'../'} className='bg-blue py-3 px-10 text-white rounded-lg hover:bg-red-mixed'>Finalizar mazo</Link>
+                <Link href={`../${idDeck}`} className='bg-red-3 py-3 px-10 text-white rounded-lg hover:bg-red-mixed'>Jugar con este mazo</Link>
             </div>
         </div>
     )
