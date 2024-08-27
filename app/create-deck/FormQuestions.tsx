@@ -1,4 +1,5 @@
 import React from 'react'
+import ListOfQuestions from './ListOfQuestions'
 
 type FormQuestionsProps = {
     idDeck: number
@@ -26,8 +27,8 @@ export default function FormQuestions({ idDeck }: FormQuestionsProps) {
                 <button className='w-full bg-red-2 hover:bg-red-3 text-white py-3 rounded-lg font-semibold'
                 >Agregar pregunta</button>
             </div>
-            
 
+            <ListOfQuestions idDeck={idDeck}/>
         </div>
     )
 }
