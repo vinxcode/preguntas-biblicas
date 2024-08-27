@@ -49,7 +49,7 @@ export default function ListOfQuestions({ idDeck }: ListOfQuestionProps) {
                                 <td className='text-center'>{index + 1}</td>
                                 <td>{question.pregunta}</td>
                                 <td>{question.respuesta}</td>
-                                <td><button className='bg-red-1 rounded-lg text-white py-1 px-5 icon-[material-symbols--delete]'></button></td>
+                                <td><button className='bg-red-1 rounded-lg text-white py-1 px-5 icon-[material-symbols--delete] hover:bg-red-3 text-xl'></button></td>
                             </tr>
                         ))
                     }

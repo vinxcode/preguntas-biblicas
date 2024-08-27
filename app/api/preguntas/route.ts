@@ -21,3 +21,22 @@ export async function POST(request: any) {
         return new Response(JSON.stringify({ error: e.message }), { status: 500 })
     }
 }
+
+export async function DELETE(request: any) {
+    const { id_pregunta } = await request.json()
+
+    try {
+        const { data, error } = await supabase
+            .from('preguntas')
+            .delete()
+            .eq('id_pregunta', id_pregunta)
+
+        if (error) {
+            throw error
+        }
+
+        return new Response(JSON.stringify({ data }), { status: 200 })
+    } catch (e: any) {
+        return new Response(JSON.stringify({ error: e.message }), { status: 500 })
+    }
+}
