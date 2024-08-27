@@ -32,6 +32,25 @@ export default function ListOfQuestions({ idDeck }: ListOfQuestionProps) {
         getPreguntas()
     }, [supabase, questions, setQuestions])
 
+    const deleteQuestion = async (idPregunta: number) => {
+
+        try {
+            const response = await fetch('/api/preguntas', {
+                method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id_pregunta: idPregunta })
+            });
+
+            if (!response.ok) {
+                throw new Error('Error en la solicitud');
+            }
+
+            const data = await response.json();
+        } catch (error) {
+            console.error('Error al ELIMINAR:', error);
+        }
+    }
+
     return (
         <div className='p-7 mt-10 bg-white flex justify-center rounded-xl shadow-lg'>
             <table className='w-full'>
@@ -49,7 +68,11 @@ export default function ListOfQuestions({ idDeck }: ListOfQuestionProps) {
                                 <td className='text-center'>{index + 1}</td>
                                 <td>{question.pregunta}</td>
                                 <td>{question.respuesta}</td>
-                                <td><button className='bg-red-1 rounded-lg text-white py-1 px-5 icon-[material-symbols--delete] hover:bg-red-3 text-xl'></button></td>
+                                <td>
+                                    <button onClick={() => deleteQuestion(question.id_pregunta)}
+                                    className='bg-red-1 rounded-lg text-white py-1 px-5 icon-[material-symbols--delete] hover:bg-red-3 text-xl'>
+                                    </button>
+                                </td>
                             </tr>
                         ))
                     }
