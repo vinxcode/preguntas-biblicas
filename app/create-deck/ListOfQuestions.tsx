@@ -52,33 +52,31 @@ export default function ListOfQuestions({ idDeck }: ListOfQuestionProps) {
     }
 
     return (
-        <div className='p-7 mt-10 bg-white flex justify-center rounded-xl shadow-lg'>
-            <table className='w-full'>
-                <thead className='text-start'>
-                    <tr className='text-start'>
-                        <th>ID</th>
-                        <th className='text-start'>Pregunta</th>
-                        <th className='text-start'>Respuesta</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <div className='p-7 mt-10  flex justify-center '>
+            <div className='w-full flex flex-col'>
+                <div className='flex justify-start font-bold py-3'>
+                    <p className='w-1/12'>ID</p>
+                    <p className='w-5/12 text-start'>Pregunta</p>
+                    <p className='w-5/12 text-start'>Respuesta</p>
+                </div>
+                <div className='flex flex-col w-full gap-4 h-80 overflow-y-auto'>
                     {
                         questions?.map((question, index) => (
-                            <tr key={index} className='text-start'>
-                                <td className='text-center'>{index + 1}</td>
-                                <td>{question.pregunta}</td>
-                                <td>{question.respuesta}</td>
-                                <td>
+                            <div key={index} className='flex justify-start text-start h-max-5'>
+                                <p className='text-center w-1/12'>{index + 1}</p>
+                                <p className='w-5/12'>{question.pregunta}</p>
+                                <p className='w-5/12'>{question.respuesta}</p>
+                                <div className='w-1/12 text-end'>
                                     <button onClick={() => deleteQuestion(question.id_pregunta)}
-                                    className='bg-red-1 rounded-lg text-white py-1 px-5 icon-[material-symbols--delete] hover:bg-red-3 text-xl'>
+                                        className='bg-red-1 rounded-lg text-white py-1 px-5 icon-[material-symbols--delete] hover:bg-red-3 text-xl'>
                                     </button>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
                         ))
                     }
-                </tbody>
+                </div>
 
-            </table>
+            </div>
         </div>
     )
 }
