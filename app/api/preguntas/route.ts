@@ -9,7 +9,7 @@ export async function POST(request: any) {
 
     try {
         const { data, error } = await supabase
-            .from('preguntas')
+            .from('preguntass')
             .insert([{ pregunta, respuesta, deck }])
 
         if (error) {
@@ -27,7 +27,7 @@ export async function DELETE(request: any) {
 
     try {
         const { data, error } = await supabase
-            .from('preguntas')
+            .from('preguntass')
             .delete()
             .eq('id_pregunta', id_pregunta)
 

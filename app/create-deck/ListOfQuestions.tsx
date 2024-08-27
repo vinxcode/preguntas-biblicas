@@ -22,7 +22,7 @@ export default function ListOfQuestions({ idDeck }: ListOfQuestionProps) {
     useEffect(() => {
         const getPreguntas = async () => {
             const { data, error } = await supabase
-                .from('preguntas')
+                .from('preguntass')
                 .select()
                 .eq('deck', idDeck)
 
