@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Toaster, toast } from 'sonner'
 import { createClient } from '@/utils/supabase/client'
+import FormQuestions from './FormQuestions'
 
 type Deck = {
     id_deck: number,
@@ -17,12 +18,7 @@ export default function FormDeck() {
     const [descripcionDeck, setDescripcionDeck] = useState("")
     const [numeroPreguntas, setNumeroPreguntas] = useState(10)
     const [isDeckCreated, setIsDeckCreated] = useState(false)
-    const [lastRegister, setLastRegister] = useState<Deck>({
-        id_deck: 0,
-        nombre_deck: "",
-        descripcion_deck: "",
-        numero_preguntas: 0
-    })
+    const [idDeck, setIdDeck] = useState(0) 
 
     const handleSuma = (quantity: number) => {
         ((numeroPreguntas === 0) && (quantity === -1)) ?
@@ -30,61 +26,29 @@ export default function FormDeck() {
             setNumeroPreguntas(numeroPreguntas + quantity)
     }
 
-    useEffect(() => {
-        const getLast = async () => {
-            const { data, error } = await supabase
-                .from('decks')
-                .select('*')
-                .order('id_deck', { ascending: false }) // Ordena por la columna 'id' en orden descendente
-                .limit(1); // Limita la respuesta a 1 registro
-
-            setLastRegister(data?.shift())
-            console.log(lastRegister)
-        }
-
-        getLast()
-    }, [])
-
-    useEffect(() => {
-        console.log(lastRegister);
-    }, [lastRegister]);
-
     const handleSubmit = async (e: any) => {
         e.preventDefault();
 
         if (nombreDeck !== "" && descripcionDeck !== "") {
             try {
-                const response = await fetch('/api/mazo', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        nombre_deck: nombreDeck,
-                        descripcion_deck: descripcionDeck,
-                        numero_preguntas: numeroPreguntas
-                    })
-                });
+                const { data, error } = await supabase
+                    .from('decks')
+                    .insert([{ nombre_deck: nombreDeck, descripcion_deck: descripcionDeck, numero_preguntas: numeroPreguntas }])
+                    .select(); // Obtén el registro recién creado
 
-                if (!response.ok) {
-                    throw new Error('Error en la solicitud');
+                if (error) throw error;
+
+                if (data && data.length > 0) {
+                    setIdDeck(data[0].id_deck); // Guarda el ID del mazo en el estado
+                    toast.success('Mazo creado exitosamente');
+                    setNombreDeck("")
+                    setDescripcionDeck("")
+                    setNumeroPreguntas(10)
+                    setIsDeckCreated(true)
                 }
-
-                setLastRegister({
-                    id_deck: lastRegister.id_deck + 1,
-                    nombre_deck: nombreDeck,
-                    descripcion_deck: descripcionDeck,
-                    numero_preguntas: numeroPreguntas
-                })
-
-                setNombreDeck("")
-                setDescripcionDeck("")
-                setNumeroPreguntas(10)
-                setIsDeckCreated(true)
-
-                const data = await response.json();
             } catch (error) {
-                console.error('Error al insertar los datos:', error);
+                console.error('Error al crear el mazo:', error);
+                toast.error('Hubo un problema al crear el mazo');
             }
         } else {
             toast.error('Debe ingresar un nombre y una descripcion para el mazo')
@@ -95,7 +59,9 @@ export default function FormDeck() {
         <>
             {
                 isDeckCreated ? (
-                    <p>{lastRegister.id_deck}, {lastRegister.nombre_deck}</p>
+                    <div className=' flex flex-col w-full text-center'>
+                    <FormQuestions idDeck={idDeck}/>
+                    </div>
                 ) : (
                     <div>
                         <>
