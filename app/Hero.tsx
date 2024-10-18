@@ -21,14 +21,18 @@ export default function Hero() {
     }
 
     return (
-        <section className='flex justify-between w-full my-10 flex-col lg:flex-row md:items-center'>
+        <motion.section
+            animate={{ x: [-20, 0], opacity: [0, 1] }}
+            transition={{ ease: "easeOut", duration: 0.3 }}
+            className='flex justify-between w-full my-10 flex-col lg:flex-row md:items-center'>
+
             <div className='flex flex-col w-full p-5 md:w-3/4 lg:pr-40 gap-4'>
                 <div className='flex flex-col'>
-                    <h1 className='text-white text-7xl font-league font-black'>Juego Bíblico</h1>
+                    <h1 className='text-white text-7xl font-league font-black'>Aprende de la biblia con Juego Bíblico</h1>
                     <div className='bg-red-1 rounded-full w-full h-5'></div>
                 </div>
-                <p className='text-white font-league text-2xl '>
-                    Aprende de la biblia mientras te diviertes. Hazlo con tus amigos, tu familia o en la iglesia.
+                <p className='text-white font-league text-3xl '>
+                    Diviértete con tus amigos, tu familia o en la iglesia.
                 </p>
                 <button onClick={handleClick}
                     className='border-2 border-white w-3/5 py-3 rounded-lg text-white hover:bg-red-1 hover:border-red-1'>¿Cómo funciona?</button>
@@ -61,6 +65,6 @@ export default function Hero() {
                     )
                 }
             </AnimatePresence>
-        </section>
+        </motion.section>
     )
 }

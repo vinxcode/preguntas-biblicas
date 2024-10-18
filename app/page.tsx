@@ -9,6 +9,8 @@ import Hero from "./Hero";
 import Footer from "./Footer";
 import ImageGrid from './ImageGrid'
 import ComoFunciona from "./ComoFunciona";
+import { motion } from "framer-motion";
+
 
 type Deck = {
   id_deck: number,
@@ -41,7 +43,7 @@ export default function Index() {
       <h3 className="text-white text-center my-5 text-2xl">Escoge un mazo para jugar</h3>
 
       {
-        decks.length === 0 ? <ImageGrid/> : (
+        decks.length === 0 ? <ImageGrid /> : (
           <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 w-full items-center">
             <Link href={'./create-deck'}
               className="p-5 bg-red-1 rounded-lg w-full h-40  shadow-xl text-white hover:bg-red-3 flex items-center gap-1 justify-center">
@@ -63,7 +65,7 @@ export default function Index() {
           </section>
         )
       }
-      <ComoFunciona/>
+      <ComoFunciona />
       <Footer />
     </div>
   );
