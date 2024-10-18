@@ -51,7 +51,7 @@ export default function Hero() {
                             animate="visible"
                             exit="exit"
                         >
-                            <div className='p-10 bg-white-bg rounded-lg w-1/3'>
+                            <div className='p-10 bg-white-bg rounded-lg w-11/12 xl:w-1/3'>
                                 <ModalContent />
                                 <button onClick={() => setIsModalOpen(false)}
                                     className='w-full bg-red-2 py-3 text-white rounded-lg mt-3 hover:bg-red-3'>Close modal</button>
