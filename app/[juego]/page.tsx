@@ -5,6 +5,7 @@ import { createClient } from "@/utils/supabase/client"
 import { useState, useEffect } from "react"
 import Pregunta from "./Pregunta"
 import { useStore } from '@/app/store/useStore'
+import { motion, AnimatePresence } from 'framer-motion'
 
 type Deck = {
     id_deck: number,
@@ -23,6 +24,13 @@ type Pregunta = {
     deck: Deck,
     dificultad: Dificultad
 }
+
+const variants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.9 }
+}
+
 export default function Juego() {
 
     const supabase = createClient()
@@ -85,27 +93,37 @@ export default function Juego() {
                     ))
                 }
             </div>
+            <AnimatePresence>
 
-            {
-                isPreguntaModalOpen && (
-                    <div className="w-full h-screen flex justify-center items-center bg-red-mixed absolute top-0 z-9">
-                        <div className="absolute bg-white-bg shadow-lg p-7 w-full flex flex-col gap-2 z-10 rounded-lg  md:w-[766px]  font-tilt items-center">
-                            <p className="text-black underline underline-offset-4">Pregunta numero {preguntaModal}</p>
-                            <p className="text-black text-3xl">{preguntas[preguntaModal - 1].pregunta}</p>
-                            {
-                                isRespuesta ? (
-                                    <p className="text-red-1 text-3xl">{preguntas[preguntaModal - 1].respuesta}</p>
-                                ) : (
-                                    <button className="bg-blue py-3 rounded-lg w-full text-white"
-                                        onClick={() => setIsRespuesta(true)}>Mostrar respuesta</button>
-                                )
-                            }
-                            <button onClick={handleCloseModal}
-                                className="bg-red-1 py-3 rounded-lg w-full text-white">CERRAR</button>
-                        </div>
-                    </div>
-                )
-            }
+                {
+                    isPreguntaModalOpen && (
+                        <motion.div
+                            variants={variants}
+                            transition={{ duration: 0.1 }}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                            className="w-full h-screen flex justify-center items-center bg-red-mixed absolute top-0 z-9">
+                            <div className="absolute bg-white-bg shadow-lg p-7 w-full flex flex-col gap-2 z-10 rounded-lg  md:w-[766px]  font-tilt items-center">
+                                <p className="text-black underline underline-offset-4">Pregunta numero {preguntaModal}</p>
+                                <p className="text-black text-3xl">{preguntas[preguntaModal - 1].pregunta}</p>
+                                {
+                                    isRespuesta ? (
+                                        <p className="text-red-1 text-3xl">{preguntas[preguntaModal - 1].respuesta}</p>
+                                    ) : (
+                                        <button className="bg-blue py-3 rounded-lg w-full text-white"
+                                            onClick={() => setIsRespuesta(true)}>Mostrar respuesta</button>
+                                    )
+                                }
+                                <button onClick={handleCloseModal}
+                                    className="bg-red-1 py-3 rounded-lg w-full text-white">CERRAR</button>
+                            </div>
+                        </motion.div>
+                    )
+                }
+            </AnimatePresence>
+
         </div>
     )
 }
+
