@@ -8,6 +8,7 @@ import Header from "./Header";
 import Hero from "./Hero";
 import Footer from "./Footer";
 import ImageGrid from './ImageGrid'
+import ComoFunciona from "./ComoFunciona";
 
 type Deck = {
   id_deck: number,
@@ -62,6 +63,7 @@ export default function Index() {
           </section>
         )
       }
+      <ComoFunciona/>
       <Footer />
     </div>
   );
